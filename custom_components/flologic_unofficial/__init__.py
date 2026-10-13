@@ -25,7 +25,11 @@ from .const import (
     PLATFORMS,
 )
 from .coordinator import FloLogicConfigEntry, FloLogicCoordinator
-from .vendor.pyflologic import DEFAULT_POLL_INTERVAL, DeviceIdentity, FloLogicClient
+from .vendor.pyflologic_unofficial import (
+    DEFAULT_POLL_INTERVAL,
+    DeviceIdentity,
+    FloLogicClient,
+)
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: FloLogicConfigEntry) -> bool:

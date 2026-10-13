@@ -3,8 +3,8 @@
 FloLogic's mobile app talks to an ASP.NET SignalR Core hub. Every request is a
 hub *invocation*, and every response comes back as a separate hub *event* --
 the server never uses SignalR completion messages, so there is no invocation
-ID to correlate a reply with its request. :mod:`pyflologic.signalr` compensates
-by serializing one request at a time.
+ID to correlate a reply with its request. :mod:`pyflologic_unofficial.signalr`
+compensates by serializing one request at a time.
 """
 
 from __future__ import annotations

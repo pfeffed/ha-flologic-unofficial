@@ -15,8 +15,8 @@ from pytest_homeassistant_custom_component.common import (
     async_fire_time_changed,
 )
 
-from custom_components.flologic.const import CONF_POLL_INTERVAL
-from custom_components.flologic.vendor.pyflologic import (
+from custom_components.flologic_unofficial.const import CONF_POLL_INTERVAL
+from custom_components.flologic_unofficial.vendor.pyflologic_unofficial import (
     DEFAULT_POLL_INTERVAL,
     FloLogicAuthError,
     FloLogicConnectionError,

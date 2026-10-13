@@ -14,7 +14,7 @@ from homeassistant.helpers import entity_registry as er
 from homeassistant.util.unit_system import METRIC_SYSTEM, US_CUSTOMARY_SYSTEM
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.flologic.vendor.pyflologic import (
+from custom_components.flologic_unofficial.vendor.pyflologic_unofficial import (
     ControlMode,
     FloLogicCommandError,
     FloLogicValidationError,

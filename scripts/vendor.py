@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy pyflologic into the integration.
+"""Copy pyflologic-unofficial into the integration.
 
 The library is not on PyPI, and a manifest requirement pointing at a release
 URL turned out to be unusable: Home Assistant's ``is_installed`` can never
@@ -12,7 +12,7 @@ So the integration ships its own copy and declares no requirement at all.
 The library keeps its own repository, tests and releases; this script is the
 seam between them, run at release time.
 
-    uv run python scripts/vendor.py                 # from ../pyflologic
+    uv run python scripts/vendor.py                 # from ../pyflologic-unofficial
     uv run python scripts/vendor.py --source PATH
     uv run python scripts/vendor.py --check         # verify, change nothing
 """
@@ -27,9 +27,10 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-VENDOR_ROOT = REPO / "custom_components" / "flologic" / "vendor"
-TARGET = VENDOR_ROOT / "pyflologic"
-DEFAULT_SOURCE = REPO.parent / "pyflologic"
+VENDOR_ROOT = REPO / "custom_components" / "flologic_unofficial" / "vendor"
+PACKAGE = "pyflologic_unofficial"
+TARGET = VENDOR_ROOT / PACKAGE
+DEFAULT_SOURCE = REPO.parent / "pyflologic-unofficial"
 
 IGNORE = shutil.ignore_patterns("__pycache__", "*.pyc", ".*")
 
@@ -72,15 +73,15 @@ def differences(source: Path) -> list[str]:
             if name != "__pycache__":
                 walk(sub, f"{prefix}{name}/")
 
-    walk(filecmp.dircmp(source / "src" / "pyflologic", TARGET, ignore=["__pycache__"]))
+    walk(filecmp.dircmp(source / "src" / PACKAGE, TARGET, ignore=["__pycache__"]))
     return found
 
 
 def vendor(source: Path) -> str:
     """Replace the vendored copy with the upstream source."""
-    library = source / "src" / "pyflologic"
+    library = source / "src" / PACKAGE
     if not library.is_dir():
-        raise SystemExit(f"no pyflologic source at {library}")
+        raise SystemExit(f"no {PACKAGE} source at {library}")
 
     version = source_version(source)
     if TARGET.exists():
@@ -121,7 +122,7 @@ def main() -> int:
         return 0
 
     version = vendor(source)
-    print(f"vendored pyflologic {version} from {source}")
+    print(f"vendored {PACKAGE} {version} from {source}")
     return 0
 
 

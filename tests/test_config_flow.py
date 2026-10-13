@@ -12,14 +12,14 @@ from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResultType
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.flologic.const import (
+from custom_components.flologic_unofficial.const import (
     CONF_DEVICE_CODE,
     CONF_DEVICE_NAME,
     CONF_DEVICE_TOKEN,
     CONF_POLL_INTERVAL,
     DOMAIN,
 )
-from custom_components.flologic.vendor.pyflologic import (
+from custom_components.flologic_unofficial.vendor.pyflologic_unofficial import (
     FloLogicAuthError,
     FloLogicConnectionError,
     User,
@@ -34,7 +34,8 @@ CREDENTIALS = {CONF_EMAIL: "owner@example.com", CONF_PASSWORD: "secret"}
 def flow_client() -> Generator[MagicMock]:
     """Patch the client the config flow builds to validate credentials."""
     with patch(
-        "custom_components.flologic.config_flow.FloLogicClient", autospec=True
+        "custom_components.flologic_unofficial.config_flow.FloLogicClient",
+        autospec=True,
     ) as client_class:
         client = client_class.return_value
         client.async_connect = AsyncMock()
@@ -59,7 +60,9 @@ class TestUserFlow:
         result = await start_user_flow(hass)
         assert result["type"] is FlowResultType.FORM
 
-        with patch("custom_components.flologic.async_setup_entry", return_value=True):
+        with patch(
+            "custom_components.flologic_unofficial.async_setup_entry", return_value=True
+        ):
             result = await hass.config_entries.flow.async_configure(
                 result["flow_id"], CREDENTIALS
             )
@@ -75,7 +78,9 @@ class TestUserFlow:
     ) -> None:
         """FloLogic registers a device per code/token pair, so it must persist."""
         result = await start_user_flow(hass)
-        with patch("custom_components.flologic.async_setup_entry", return_value=True):
+        with patch(
+            "custom_components.flologic_unofficial.async_setup_entry", return_value=True
+        ):
             result = await hass.config_entries.flow.async_configure(
                 result["flow_id"], CREDENTIALS
             )
@@ -109,7 +114,9 @@ class TestUserFlow:
 
         # The form must still be usable after a failure.
         flow_client.async_connect.side_effect = None
-        with patch("custom_components.flologic.async_setup_entry", return_value=True):
+        with patch(
+            "custom_components.flologic_unofficial.async_setup_entry", return_value=True
+        ):
             result = await hass.config_entries.flow.async_configure(
                 result["flow_id"], CREDENTIALS
             )

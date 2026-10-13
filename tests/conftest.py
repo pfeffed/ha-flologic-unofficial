@@ -11,13 +11,13 @@ from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
 from homeassistant.core import HomeAssistant
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.flologic.const import (
+from custom_components.flologic_unofficial.const import (
     CONF_DEVICE_CODE,
     CONF_DEVICE_NAME,
     CONF_DEVICE_TOKEN,
     DOMAIN,
 )
-from custom_components.flologic.vendor.pyflologic import (
+from custom_components.flologic_unofficial.vendor.pyflologic_unofficial import (
     Account,
     Notification,
     User,
@@ -112,7 +112,7 @@ def mock_client() -> Generator[MagicMock]:
     """Patch the FloLogic client used by the integration."""
     account = make_account()
     with patch(
-        "custom_components.flologic.FloLogicClient", autospec=True
+        "custom_components.flologic_unofficial.FloLogicClient", autospec=True
     ) as client_class:
         client = client_class.return_value
         client.async_connect = AsyncMock()

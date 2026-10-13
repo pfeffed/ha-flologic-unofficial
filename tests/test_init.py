@@ -11,9 +11,9 @@ from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers import entity_registry as er
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.flologic import async_remove_config_entry_device
-from custom_components.flologic.const import DOMAIN
-from custom_components.flologic.vendor.pyflologic import (
+from custom_components.flologic_unofficial import async_remove_config_entry_device
+from custom_components.flologic_unofficial.const import DOMAIN
+from custom_components.flologic_unofficial.vendor.pyflologic_unofficial import (
     FloLogicAuthError,
     FloLogicConnectionError,
 )

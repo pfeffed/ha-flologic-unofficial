@@ -1,4 +1,4 @@
-"""Exceptions raised by :mod:`pyflologic`."""
+"""Exceptions raised by :mod:`pyflologic_unofficial`."""
 
 from __future__ import annotations
 

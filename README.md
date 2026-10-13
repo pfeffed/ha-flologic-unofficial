@@ -1,11 +1,33 @@
-# FloLogic for Home Assistant
+# FloLogic (Unofficial) for Home Assistant
 
 Home Assistant integration for [FloLogic](https://flologic.com/) leak-detection
-water shutoff valves, built on [`pyflologic`](https://github.com/pfeffed/pyflologic).
+water shutoff valves, built on
+[`pyflologic-unofficial`](https://github.com/pfeffed/pyflologic-unofficial).
 
-Unofficial and not affiliated with FloLogic. It speaks the same cloud protocol
-as the mobile app, reverse-engineered from its traffic, so a server-side change
-could break it.
+FloLogic now publishes an official Web API, and
+[`ha-flologic`](https://github.com/pfeffed/ha-flologic) is the integration
+built on it. This one reaches much more of the device — every setting the app
+exposes, battery and signal diagnostics, the notification log, push updates
+within a second — because it speaks the mobile app's own protocol,
+reverse-engineered from its traffic. It is not affiliated with FloLogic, and a
+server-side change could break it.
+
+The two use different domains (`flologic_unofficial` here, `flologic` there),
+so they can be installed side by side.
+
+### Upgrading from 0.4.x
+
+Until 0.5.0 this integration used the `flologic` domain, which now belongs to
+the official-API integration. Home Assistant cannot move a config entry
+between domains, so:
+
+1. Note any automations or dashboards that use FloLogic entities.
+2. Remove the FloLogic integration entry under **Settings → Devices &
+   services**.
+3. Update this repository in HACS to 0.5.0 and restart Home Assistant.
+4. Add **FloLogic (Unofficial)** and sign in again. Entity IDs follow the valve
+   names, so they normally come back unchanged; check for a `_2` suffix if an
+   old entity was left behind.
 
 ## One entry per account, every valve
 
@@ -77,17 +99,19 @@ the valve, not the plumbing.
 ## Install
 
 1. **HACS → ⋮ → Custom repositories**, add
-   `https://github.com/pfeffed/ha-flologic` with category **Integration**.
-2. Find **FloLogic** in HACS, install it, and **restart Home Assistant**.
-3. **Settings → Devices & services → Add integration → FloLogic**, and sign in
-   with your FloLogic account.
+   `https://github.com/pfeffed/ha-flologic-unofficial` with category
+   **Integration**.
+2. Find **FloLogic (Unofficial)** in HACS, install it, and **restart Home
+   Assistant**.
+3. **Settings → Devices & services → Add integration → FloLogic (Unofficial)**,
+   and sign in with your FloLogic account.
 
 Every valve on the account is added, so one entry per account is enough even
 if your valves are at different addresses.
 
-`pyflologic` is not on PyPI; the manifest points at a wheel attached to a
-GitHub release, which Home Assistant installs on first setup. That needs
-outbound HTTPS to github.com at that moment, and nothing after.
+`pyflologic-unofficial` is not on PyPI, so the integration ships its own copy
+under `vendor/` and declares no requirements: nothing is downloaded at setup,
+and a boot without internet access does not cost you leak protection.
 
 Your password is stored in Home Assistant's config entry and sent only to
 FloLogic. If it stops working, the integration prompts you to re-authenticate
@@ -108,7 +132,8 @@ uv run ruff check .
 ```
 
 Tests run against a mocked client; no account needed. Protocol-level work
-belongs in `pyflologic`.
+belongs in `pyflologic-unofficial`, which is vendored here by
+`scripts/vendor.py`.
 
 ## License
 

@@ -31,7 +31,7 @@ from .const import (
     DOMAIN,
 )
 from .coordinator import FloLogicConfigEntry
-from .vendor.pyflologic import (
+from .vendor.pyflologic_unofficial import (
     DEFAULT_POLL_INTERVAL,
     MIN_POLL_INTERVAL,
     DeviceIdentity,

@@ -1,7 +1,7 @@
 [project]
-name = "ha-flologic-dev"
+name = "ha-flologic-unofficial-dev"
 version = "0.0.0"
-description = "Development environment for the FloLogic Home Assistant integration"
+description = "Development environment for the unofficial FloLogic Home Assistant integration"
 requires-python = ">=3.13"
 dependencies = []
 
@@ -15,8 +15,8 @@ dev = [
   "ruff>=0.6",
 ]
 
-# No pyflologic dependency on purpose. The library is vendored into
-# custom_components/flologic/vendor/, and leaving it out of the environment
+# No pyflologic-unofficial dependency on purpose. The library is vendored
+# into custom_components/flologic_unofficial/vendor/, and leaving it out of the environment
 # means any code still reaching for an installed copy fails immediately
 # rather than passing here and breaking on a real Home Assistant.
 
@@ -29,7 +29,7 @@ line-length = 88
 target-version = "py313"
 # The vendored copy is upstream code, checked by its own repository and
 # required to stay byte-identical so drift is detectable.
-extend-exclude = ["custom_components/flologic/vendor"]
+extend-exclude = ["custom_components/flologic_unofficial/vendor"]
 
 [tool.ruff.lint]
 select = [

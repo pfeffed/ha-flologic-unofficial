@@ -7,7 +7,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN, MANUFACTURER
 from .coordinator import FloLogicCoordinator
-from .vendor.pyflologic import Valve
+from .vendor.pyflologic_unofficial import Valve
 
 
 class FloLogicValveEntity(CoordinatorEntity[FloLogicCoordinator]):

@@ -331,7 +331,7 @@ class FloLogicClient:
             "userDeviceToken": self._device.token,
             "relogToken": self._relog_token,
             "OsPlatform": OS_PLATFORM,
-            "AppVer": "pyflologic",
+            "AppVer": "pyflologic-unofficial",
             "DeviceName": self._device.name,
         }
 

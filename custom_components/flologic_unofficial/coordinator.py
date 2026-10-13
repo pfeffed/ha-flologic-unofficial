@@ -17,7 +17,7 @@ from homeassistant.exceptions import ConfigEntryAuthFailed
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import DOMAIN
-from .vendor.pyflologic import (
+from .vendor.pyflologic_unofficial import (
     Account,
     DeviceIdentity,
     FloLogicAuthError,

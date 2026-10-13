@@ -96,9 +96,9 @@ class ValveMode(IntFlag, boundary=KEEP):
 class ToggledSettingName(StrEnum):
     """The settings FloLogic switches off by negating rather than clearing.
 
-    Each maps to a :class:`~pyflologic.models.ToggledSetting` on the valve and
-    to one signed field on the wire, so writing one means choosing a sign as
-    well as a magnitude.
+    Each maps to a :class:`~pyflologic_unofficial.models.ToggledSetting` on the
+    valve and to one signed field on the wire, so writing one means choosing a
+    sign as well as a magnitude.
     """
 
     AUTO_AWAY = "auto_away"
@@ -320,7 +320,7 @@ class FlowState(IntEnum):
     The value is kept because the cloud may use it on hardware not tested
     here, but nothing should infer a closed valve from ``flowState``: a closed
     valve looks exactly like an idle open one. Read
-    :attr:`~pyflologic.models.Valve.mode` for that.
+    :attr:`~pyflologic_unofficial.models.Valve.mode` for that.
 
     Reaching ``FLOW`` takes several minutes of *uninterrupted* flow, timed
     from ``lastNewFlow`` rather than from when a tap was opened -- closing the

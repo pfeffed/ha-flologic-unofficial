@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from homeassistant.const import Platform
 
-DOMAIN = "flologic"
+DOMAIN = "flologic_unofficial"
 
 PLATFORMS: list[Platform] = [
     Platform.VALVE,

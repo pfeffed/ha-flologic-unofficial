@@ -24,7 +24,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .coordinator import FloLogicConfigEntry, FloLogicCoordinator
 from .entity import FloLogicValveEntity
-from .vendor.pyflologic import (
+from .vendor.pyflologic_unofficial import (
     PROBLEM_PRIORITY,
     ControlMode,
     ShutoffReason,

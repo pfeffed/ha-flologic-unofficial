@@ -15,10 +15,10 @@ from typing import Any
 
 import pytest
 
-from custom_components.flologic import const
-from custom_components.flologic.binary_sensor import BINARY_SENSORS
-from custom_components.flologic.sensor import SENSORS
-from custom_components.flologic.vendor.pyflologic import ValveMode
+from custom_components.flologic_unofficial import const
+from custom_components.flologic_unofficial.binary_sensor import BINARY_SENSORS
+from custom_components.flologic_unofficial.sensor import SENSORS
+from custom_components.flologic_unofficial.vendor.pyflologic_unofficial import ValveMode
 
 COMPONENT = Path(const.__file__).parent
 STRINGS = COMPONENT / "strings.json"

@@ -1,0 +1,17 @@
+{
+  "domain": "flologic_unofficial",
+  "name": "FloLogic (Unofficial)",
+  "codeowners": [
+    "@pfeffed"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/pfeffed/ha-flologic-unofficial",
+  "integration_type": "hub",
+  "iot_class": "cloud_push",
+  "issue_tracker": "https://github.com/pfeffed/ha-flologic-unofficial/issues",
+  "loggers": [
+    "custom_components.flologic_unofficial"
+  ],
+  "requirements": [],
+  "version": "0.5.0"
+}

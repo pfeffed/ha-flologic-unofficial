@@ -54,7 +54,7 @@ class SignalRConnection:
 
     The connection is not self-healing; reconnection policy belongs to the
     caller, which knows what has to be re-established afterwards (a login, in
-    FloLogic's case). See :class:`~pyflologic.client.FloLogicClient`.
+    FloLogic's case). See :class:`~pyflologic_unofficial.client.FloLogicClient`.
     """
 
     def __init__(

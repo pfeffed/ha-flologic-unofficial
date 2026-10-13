@@ -1,13 +1,14 @@
 """Async client for the FloLogic Connect leak-detection valve cloud service.
 
-FloLogic has no public API. This library speaks the same SignalR protocol the
-mobile app uses, reverse-engineered from its traffic, and it is not affiliated
-with or endorsed by FloLogic.
+This library speaks the same SignalR protocol the mobile app uses,
+reverse-engineered from its traffic, and it is not affiliated with or endorsed
+by FloLogic. FloLogic's official Web API has its own client, ``pyflologic``,
+which covers less of the device but is the supported interface.
 
 Every account may hold several valves plus a G-Connect gateway, so the client
 is account-scoped and takes a valve ID on each command::
 
-    from pyflologic import ControlMode, DeviceIdentity, FloLogicClient
+    from pyflologic_unofficial import ControlMode, DeviceIdentity, FloLogicClient
 
     async with FloLogicClient(
         email="you@example.com",
@@ -62,7 +63,7 @@ from .models import (
     ValveAccess,
 )
 
-__version__ = "0.4.1"
+__version__ = "0.5.0"
 
 __all__ = [
     "CRITICAL_FLAGS",

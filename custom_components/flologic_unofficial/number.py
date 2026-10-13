@@ -30,7 +30,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from .coordinator import FloLogicConfigEntry, FloLogicCoordinator
 from .entity import FloLogicValveEntity
 from .sensor import OUNCES_PER_MINUTE
-from .vendor.pyflologic import (
+from .vendor.pyflologic_unofficial import (
     FloLogicClient,
     FloLogicError,
     FloLogicValidationError,

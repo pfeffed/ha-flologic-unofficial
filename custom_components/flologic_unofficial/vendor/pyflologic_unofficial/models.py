@@ -1,9 +1,10 @@
 """Typed views over the JSON objects the FloLogic cloud sends.
 
 Every model keeps the payload it was built from in ``raw``. That is not
-laziness: :meth:`~pyflologic.client.FloLogicClient.async_set_mode` and friends
-have to echo the *entire* valve object back to the hub, so discarding unknown
-fields would break writes against firmware newer than this library.
+laziness: :meth:`~pyflologic_unofficial.client.FloLogicClient.async_set_mode`
+and friends have to echo the *entire* valve object back to the hub, so
+discarding unknown fields would break writes against firmware newer than this
+library.
 """
 
 from __future__ import annotations
@@ -149,7 +150,7 @@ class DeviceIdentity:
     token: str
 
     @classmethod
-    def generate(cls, name: str = "pyflologic") -> DeviceIdentity:
+    def generate(cls, name: str = "pyflologic-unofficial") -> DeviceIdentity:
         """Create a fresh random identity to persist and reuse."""
         return cls(
             name=name,
@@ -706,7 +707,7 @@ class Valve:
 
         This is purely the valve's timing. Whether the *user* would be notified
         also depends on :attr:`ValveAccess.notifications` carrying
-        :attr:`~pyflologic.enums.NotificationSetting.ADVANCE_SHUTOFF`.
+        :attr:`~pyflologic_unofficial.enums.NotificationSetting.ADVANCE_SHUTOFF`.
         """
         countdown = self.shutoff_countdown_seconds(now)
         pre_alert = self.pre_alert_minutes

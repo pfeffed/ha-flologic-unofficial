@@ -1,7 +1,7 @@
 """Manifest checks, mostly about not shipping a lie.
 
-The integration is developed against a sibling checkout of pyflologic while
-the manifest pins a published version. Nothing notices when those diverge
+The integration is developed against a sibling checkout of pyflologic-unofficial
+while the manifest pins a published version. Nothing notices when those diverge
 until a user installs the pinned release and the integration calls a method
 that does not exist in it.
 """
@@ -14,8 +14,8 @@ from pathlib import Path
 import pytest
 from homeassistant.const import Platform
 
-from custom_components.flologic import const
-from custom_components.flologic.vendor import pyflologic
+from custom_components.flologic_unofficial import const
+from custom_components.flologic_unofficial.vendor import pyflologic_unofficial
 
 COMPONENT = Path(const.__file__).parent
 MANIFEST = json.loads((COMPONENT / "manifest.json").read_text())
@@ -36,12 +36,14 @@ def test_there_are_no_install_time_requirements() -> None:
 def test_the_vendored_version_is_recorded() -> None:
     """The marker and the vendored package must agree on what shipped."""
     recorded = (COMPONENT / "vendor" / "VERSION").read_text().strip()
-    assert recorded == pyflologic.__version__
+    assert recorded == pyflologic_unofficial.__version__
 
 
 def test_the_vendored_library_is_the_one_being_imported() -> None:
     """Guard against the tests exercising an installed copy by accident."""
-    assert "custom_components/flologic/vendor" in pyflologic.__file__
+    assert (
+        "custom_components/flologic_unofficial/vendor" in pyflologic_unofficial.__file__
+    )
 
 
 def test_every_api_the_integration_uses_exists_in_the_library() -> None:
@@ -56,7 +58,7 @@ def test_every_api_the_integration_uses_exists_in_the_library() -> None:
         "async_fetch_notifications",
         "add_listener",
     ):
-        assert hasattr(pyflologic.FloLogicClient, name), name
+        assert hasattr(pyflologic_unofficial.FloLogicClient, name), name
 
 
 @pytest.mark.parametrize(
