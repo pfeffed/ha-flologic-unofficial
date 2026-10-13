@@ -23,11 +23,18 @@ between domains, so:
 
 1. Note any automations or dashboards that use FloLogic entities.
 2. Remove the FloLogic integration entry under **Settings → Devices &
-   services**.
-3. Update this repository in HACS to 0.5.0 and restart Home Assistant.
+   services**. Doing this first is what lets the entity IDs come back
+   unchanged.
+3. In HACS, add `https://github.com/pfeffed/ha-flologic-unofficial` as a new
+   custom repository and install it. The old `pfeffed/ha-flologic` entry now
+   holds the official-API integration: update it if you want that too, or
+   remove it. Restart Home Assistant.
 4. Add **FloLogic (Unofficial)** and sign in again. Entity IDs follow the valve
    names, so they normally come back unchanged; check for a `_2` suffix if an
    old entity was left behind.
+
+Do one house at a time, while someone is there: leak protection through Home
+Assistant is down between steps 2 and 4.
 
 ## One entry per account, every valve
 
